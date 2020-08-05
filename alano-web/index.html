@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <title>Alano</title>
+
+</head>
+
+<body>
+    <div>
+        <!-- header -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a href="/" class="navbar-brand nuxt-link-active" style="display: block; height:60px;width: 60px;">
+                	<img src="/images/luckystar.png" alt="" class="logo-img" style="max-width:100%;max-height:100%">
+				</a>
+				<a href="/" class="navbar-brand">Alano</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                    <button type="button" class="btn btn-primary btn-custom" style="margin: 10px auto;" data-toggle="modal"
+                        data-target="#lottery">
+                        <span>幸运抽奖</span>
+                    </button>
+                    <div class="src-occupy">
+                        <a id="cpu" href="https://cpuemergency.com/" target="_blank"></a>
+                        <a id="net" href="https://cpuemergency.com/" target="_blank"></a>
+                    </div>
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link btnIntro" href="#" data-toggle="modal" data-target="#introduction">玩法介绍</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btnBonus" href="#" data-toggle="modal" data-target="#bonus">红利</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btnInvite" href="#" data-toggle="modal" data-target="#invite">邀请好友
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btnMyPool" href="#" data-toggle="modal" data-target="#mypool">我的邀请</a>
+                        </li>
+                    </ul>
+                    <div class="account">
+                        <button type="button" class="btn btn-primary btn-custom" id="login">
+                            <span>登录</span>
+                        </button>
+                        <div class="nickname"></div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- container -->
+        <div class="banner">
+            <div class="container">
+                <div class="row" style="padding-top: 10px;">
+                    <div class="col-lg-12 center row">
+                        <div class="col-lg-8 col-md-12">
+                            <!-- how much input -->
+                            <div class="bet container" style="padding-left:0px;padding-right:0px;">
+                                <!-- data show -->
+                                <div class="col-lg-12 center row" style="padding-left:0px;padding-right:0px;">
+                                	<div class="col-lg-6 col-md-12" style="padding-left:5px;padding-right:5px;">
+		                                <ul class="orderList col">
+		                                    <ul class="orderlist row info" style="display:inline-block;">
+		                                    	<li class="info col-md-6" style="display:inline;">
+		                                    	    <div class="number" id="title">当前奖池</div>
+		                                    	</li>
+		                                    </ul>
+		                                	<ul class="orderlist row">
+		                                    	<li class="info col-md-4" style="text-align:center">
+		                                        	<div class="word1" style="text-align:center">奖期 : </div>
+		                                    	</li>
+		                                    	<li class="info col-md-8">
+		                                    	    <div class="number" id="myNumber">0</div>
+		                                        	<input id="myNumberValue" value="50" hidden>
+		                                    	</li>
+		                                    </ul>
+		                                    <ul class="orderlist row">
+		                                    	<li class="info col-md-4">
+		                                        	<div class="word1">参与人数 : </div>
+		                                    	</li>
+		                                    	<li class="info col-md-8">
+		                                        	<div class="number" id="odds">0</div>
+		                                    	</li>
+		                                    </ul>
+		                                    <ul class="orderlist row">
+		                                    	<li class="info col-md-4">
+		                                        	<div class="word1">本期奖池 : </div>
+		                                   		</li>
+		                                    	<li class="info col-md-8">
+		                                        	<div class="number" id="percent">0</div>
+		                                   		</li>
+		                                   	</ul>
+		                                   	<ul class="orderlist row">
+		                                    	<li class="info col-md-4">
+		                                        	<div class="word1">累计奖池 : </div>
+		                                   		</li>
+		                                    	<li class="info col-md-8">
+		                                        	<div class="number" id="all_pool">0</div>
+		                                   		</li>
+		                                   	</ul>
+		                                   	<ul class="orderlist row">
+		                                    	<li class="info col-md-4">
+		                                        	<div class="word1">开奖时间 : </div>
+		                                   		</li>
+		                                    	<li class="info col-md-8">
+			                                       	<div class="number">
+			                                           	<span class="timer">
+			                                           	</span>
+			                                       	</div>
+		                                   		</li>
+		                                   	</ul>
+		                                </ul>
+		                            </div>
+		                            <div class="col-lg-6 col-md-12 bet-statistic" style="padding-left:5px;padding-right:5px;">
+			                            <ul class="table-header " style="margin: 0px; padding: 0px;">
+		                                    <li class="t-header" style="height: 40px; padding: 0px 24px 0px;">
+		                                        <span style="text-align: center; flex: 0 0 32px; display: inline-block;">号码</span>
+		                                        <span>注数</span>
+		                                        <span>概率</span>
+		                                        <span>每注奖金</span>
+		                                    </li>
+	                                	</ul>
+		                                <ul class="table-list data" id="bet-number-state">
+		                                </ul>
+		                            </div>
+                                </div>
+
+								<div class="col-md-12 center row" style="padding-left:0px;padding-right:0px;">
+										<div class="col-md-3">
+											<div class="row">
+												<div class="text_1 col-md-12 text-center">投注号码</div>
+												<div class="selected-bet-number mb-3 mt10 col-md-12 justify-content-center">
+													<select id="selected-number">
+													  <option value="0">  N  </option>
+													  <option value="1">  1  </option>
+													  <option value="2">  2  </option>
+													  <option value="3">  3  </option>
+													  <option value="4">  4  </option>
+													  <option value="5">  5  </option>
+													  <option value="6">  6  </option>
+													  <option value="7">  7  </option>
+													  <option value="8">  8  </option>
+													  <option value="9">  9  </option>
+													  <option value="10">  10  </option>
+													  <option value="11">  11  </option>
+													  <option value="12">  12  </option>
+													</select>
+												</div>
+											</div>
+										</div>
+	                                    <div class="col-md-6">
+	                                        <div class="row">
+	                                            <div class="text_1 col-md-12 text-center">投注数</div>
+	                                            <div class="btn-toolbar mb-3 mt10 col-md-12 justify-content-center" role="toolbar"
+	                                                aria-label="Toolbar with button groups">
+	                                                <div class="input-group">
+	                                                    <input id="money" type="text" class="form-control" value="1"
+	                                                        aria-label="Input group example" aria-describedby="btnGroupAddon">
+	                                                    <div class="btn-group" role="group" aria-label="Basic example">
+	                                                        <button type="button" class="btn btn-secondary active play-type" style="width:60px;border-color:#ccc;">注</button>
+	                                                        <button type="button" class="btn btn-secondary" style="width:40px;border-color:#ccc;" id="Half">1</button>
+	                                                        <button type="button" class="btn btn-secondary" style="width:40px;border-color:#ccc;" id="Double">2</button>
+	                                                        <button type="button" class="btn btn-secondary" style="width:40px;border-color:#ccc;" id="Max">4</button>
+	                                                        <button type="button" class="btn btn-secondary" style="width:40px;border-color:#ccc;" id="Max">8</button>
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                    <div class="col-md-3">
+	                                        <div class="row">
+	                                            <div class="text_1 col-md-12 text-center">投注金额</div>
+	                                            <div class="btn-toolbar mb-3 mt10 col-md-12 justify-content-center" role="toolbar"
+	                                                aria-label="Toolbar with button groups">
+	                                                <div class="input-group">
+	                                                    <input id="may_get_money" type="text" class="form-control" value="1"
+	                                                        aria-label="Input group example" aria-describedby="btnGroupAddon"
+	                                                        disabled="true" />
+	                                                    <button type="button" class="btn btn-secondary active play-type">EOS</button>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+
+	                            </div>
+	                            
+	                            <div class="col-md-12 center info" style="padding-top:0px;padding-bottom:0px;">
+	                                <div class="ready-bet">
+                                    	号码 :
+                                       	<span id="ready-number">
+                                        </span>
+                                    	说明 :
+                                       	<span id="number-state">
+                                        </span>
+                                    </div>
+                                    <div class="ready-bet">
+                                    	注数 :
+                                       	<span id="ready-bets">
+                                        </span>
+                                                                       概率:
+                                        <span id="ready-precent">
+                                        </span>
+                                                                        每注奖金:
+                                        <span id="ready-prize">
+                                        </span>
+                                                                        总奖金:
+                                        <span id="ready-all-prize">
+                                        </span>
+                                    </div>
+	                            </div>
+                             
+                                <div class="play container col-md-12 center info">
+                                	<button type="button" class="btn btn-primary" id="play">请登录</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-12">
+                            <div class="ranking">
+                                <h2>本期下注
+                                </h2>
+                                <ul class="table-header " style="margin: 0px; padding: 0px;">
+                                    <li class="t-header" style="height: 40px; padding: 0px 36px 0px;">
+                                        <span style="text-align: center; flex: 0 0 52px; display: inline-block;">投注者</span>
+                                        <span>投注号码</span>
+                                        <span>投注额</span>
+                                    </li>
+                                </ul>
+                                <ul class="table-list data" id="bet-rank">
+                                </ul>
+                                <!--<div class="flag">
+                                    <a target="_blank" href="#">
+                                        <div class="msg">
+                                            <p>2000</p>
+                                            <p>EOS大赠送</p>
+                                        </div>
+                                    </a>
+                                </div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="banner">
+            <div class="container">
+                <div class="row" style="padding-top: 10px;">
+                	<div class="col-lg-12 center row">
+	                    <ul class="tabs">
+	                        <li class="active" id="allBet">历史奖期</li>
+	                    </ul>
+	                    <div class="records" style="width: 100%; overflow: scroll;">
+                        <table style="min-width: 600px;">
+                            <thead>
+                                <tr>
+                                    <th style="width: 6%;">奖期</th>
+                                    <th style="width: 15%;">开奖时间</th>
+                                    <th style="width: 8%;">参与总人数</th>
+                                    <th style="width: 8%;">总注数</th>
+                                    <th style="width: 15%;">总金额</th>
+                                    <th style="width: 15%;">红利</th>
+                                    <th style="width: 8%;">开奖号码</th>
+                                    <th style="width: 10%;">中奖注数</th>
+                                    <th style="width: 15%;">总奖金</th>
+                                </tr>
+                            </thead>
+                            <tbody id="history-betstate-list" class="allBetData">
+                            </tbody>
+                        </table>
+                    </div>
+                	</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- footer -->
+        <footer style="background-color: #1c233f; color: #72778d;">
+            <!--采用container，使得页尾内容居中 -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-9" style="padding: 40px 0; margin: 0 auto;">
+                        <h3>Alano</h3>
+                    </div>
+                    <hr class="col-md-12 col-9 center" style="background: #171932" />
+                    <div class="col-md-12 col-9" style="padding: 20px 0;line-height: 20px; margin: 0 auto; text-align: justify;">
+                        Please arrange your time reasonably, and do not over-indulge.
+                        <br />
+                        <br /> If you reside in a location where lottery, gambling, sports betting or betting over the
+                        internet
+                        is illegal, please do not click on anything related to these activities on this site. You must
+                        be
+                        21 years of age to click on any betting or gambling related items even if it is legal to do so
+                        in
+                        your location. Recognising that the laws and regulations involving online gaming are different
+                        everywhere,
+                        readers are advised to check with the laws that exist within their own jurisdiction to
+                        ascertain
+                        the legality of the activities which are covered.
+                        <br />
+                        <br /> The games provided by eospoll are based on blockchain, fair and transparent. When you
+                        start playing
+                        these games, please note that online gambling and lottery is an entertainment vehicle and that
+                        it
+                        carries with it a certain degree of financial risk. Players should be aware of this risk, and
+                        govern
+                        themselves accordingly.
+                    </div>
+                    <hr class="col-md-12 col-9 center" style="background: #171932" />
+                    <div class="col-md-12 col-9 center text-center" style="padding: 20px 0;">Copyright &copy; 2018</div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- loading -->
+        <div class="fade alert-msg modal" data-backdrop=static id="alert-modal" style="z-index:10000;">
+            <div class=modal-dialog>
+                <div class=modal-body style="text-align: center;" id="alert-msg">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="fade loading modal" id="loading">
+            <div class=modal-dialog>
+                <div class=modal-body style="text-align: center;">
+                    <img src=" images/loading-icon-1.gif" alt="">
+                </div>
+            </div>
+        </div>
+
+        <!-- bonus -->
+        <div class="fade bonus modal" data-backdrop=static id="bonus">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="border: none;">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="container" style="margin-top: -45px;">
+                        <ul class="nav nav-pills">
+                            <li>
+                                <a href="#1b" data-toggle="tab" class="active">红利池</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content clearfix">
+                            <div class="tab-pane active" id="1b">
+                                <div class="container" style="padding: 0;">
+                                    <div class="row">
+                                        <div class="col-md-12 col-12 row item center">
+                                            <div class="col-md-6 col-12">
+                                                <h5>当前红利池</h5>
+                                            </div>
+                                            <div class="col-md-6 col-12 text text-center">
+                                                下次分红:<span id="bonus-remain-time">00:00:00</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-12 row item center panel">
+                                            <div class="col-md-6 col-6 coin text">总和</div>
+                                            <div class="col-md-6 col-6 allocate text" id="bonus-total" style="text-align:center;line-height:96px;font-size:32px">0</div>
+                                        </div>
+                                        <div class="col-md-12 col-12 row item center panel">
+                                            <div class="col-md-6 col-6 coin text">我的红利</div>
+                                            <div class="col-md-6 col-6 allocate text" id="bonus-me" style="text-align:center;line-height:96px;font-size:32px">0</div>
+                                        </div>
+                                        <div class="col-md-12 col-12">* 所得的紅利會自動累積到您的餘額上。</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- invite -->
+        <div class="fade invite modal" data-backdrop=static id="invite">
+            <div class=modal-dialog>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="exampleModalLabel">立即邀請好友享受红利</h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group">
+                            <input id="inviteLink" type="text" class="form-control"
+                                aria-label="Input group example" aria-describedby="btnGroupAddon">
+                        </div>                   
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- introduction -->
+        <div class="fade introduction modal" data-backdrop=static id="introduction">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="exampleModalLabel">玩法介绍</h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <ol>
+                            <li>1. 準備好你的EOS 帳號，如果還未有EOS帳，可根據<a href="https://medium.com/dapppub/create-your-own-eos-account-easily-using-the-non-service-fee-dapp-signupeoseos-b15c5347f2fc"
+                                    target="_blank">教程</a>創建</li>
+                            <li>2, 您需要透過Scatter 在網頁上操作帳號，如果還未有安裝Scatter，請<a href="https://get-scatter.com/" target="_blank">安裝Scatter</a></li>
+                            <li>3, 按下登入按鈕，透過Scatter 進行登入</li>
+                            <li>4, 選擇需要投注貨幣，您可使用EOS投注</li>
+                            <li>5, 設置需要投注量</li>
+                            <li>7, 按下"我要下注"按鈕進行投注，等待开奖</li>
+                            <li>** 由於遊戲都在EOS 的智能合約上執，因此遊戲保證公平，並不能作敝。我們透過獨有的加密技術，保證賽果不會被更改，請您放心下注。</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- lottery -->
+        <div class="fade lottery modal" data-backdrop=static id="lottery">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="border: none;">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="container" style="margin-top: -45px;">
+                        <!-- choice token -->
+                        <div class="center">
+                            <!--
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-secondary active" id="play-eos">EOS</button>
+                                <button type="button" class="btn btn-secondary" id="play-dice">Dice</button>
+                            </div>
+                        -->
+                        </div>
+                        <h2>幸运抽奖</h2>
+                        <ul class="table">
+                            <li>
+                                <div>幸运号码</div>
+                                <div>奖励</div>
+                            </li>
+                            <li class="">
+                                <div>0-9885</div>
+                                <div>0.0005 EOS</div>
+                            </li>
+                            <li class="">
+                                <div>9886-9985</div>
+                                <div>0.0050 EOS</div>
+                            </li>
+                            <li class="">
+                                <div>9986-9993</div>
+                                <div>0.0500 EOS</div>
+                            </li>
+                            <li class="">
+                                <div>9994-9997</div>
+                                <div>0.5000 EOS</div>
+                            </li>
+                            <li class="">
+                                <div>9998-9999</div>
+                                <div>5.0000 EOS</div>
+                            </li>
+                            <li class="">
+                                <div>10000</div>
+                                <div>50.0000 EOS</div>
+                            </li>
+                        </ul>
+                        <button type="button" class="btn lottery_button"><span>抽奖</span>(<span id="remain_draw_times">0</span>)</button>
+                        <div class="center lottery-draw hidden">下次抽奖时间:<span id="lottery_draw_time"></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- my invite -->
+        <div class="fade lottery modal" data-backdrop=static id="mypool">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="border: none;">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="container myinvite" style="margin-top: -45px;">
+                        <!-- choice token -->
+                        <h2>我的邀请</h2>
+                       <ul class="table-header " style="margin: 0px; padding: 0px;">
+                            <li class="t-header" style="height: 30px; padding: 0px 80px 0px;">
+                                <span style="text-align: center; flex: 0 0 56px; display: inline-block;">一级好友</span>
+                                <span>二级好友</span>
+                            </li>
+                        </ul>
+                        <div class="center row">
+                        	<div class="col-lg-6 col-md-12">
+		                        <ul class="table-list data" id="myinvite1-list">
+		                        </ul>
+		                    </div>
+		                    <div class="col-lg-6 col-md-12">
+		                        <ul class="table-list data" id="myinvite2-list">
+		                        </ul>
+		                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div>
+
+
+	<script src="lib/popper.js"></script>
+    <script src="lib/jquery-3.3.1.min.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+    <!--<script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/1.0.0/dist/progressbar.js"></script>-->
+    <script src="https://cdn.bootcss.com/progressbar.js/1.0.1/progressbar.min.js"></script>
+    <script src="lib/eos.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/index.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.8.3/jquery.js"></script>
+    <!--
+    <script src="https://cdn.scattercdn.com/file/scatter-cdn/js/latest/scatterjs-core.min.js"></script>
+    <script src="https://cdn.scattercdn.com/file/scatter-cdn/js/latest/scatterjs-plugin-eosjs2.min.js"></script>
+    -->
+</body>
+
+</html>
